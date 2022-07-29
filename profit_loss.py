@@ -31,16 +31,16 @@ for i in range(1, len(list_profit)):
     #create if and else statement
     #set condition (net profit of a day is less than the net profit of the previous day) for if statement
     if list_profit[i] < list_profit[i-1]:
-    #if condition is met, print the statement using print function and f-string
-    print(f"DAY: {list_day[i]}, AMOUNT: SGD{convertUSDtoSGD(list_profit[i])}")
-            #set the variable as False
-            higher = False
-        #set condition (net profit of a day is greater than the net profit of the previous day) for else statement
-        else:
-            #use continue keyword to move to the next iteration
-            continue
-    #create a if statement and set a condition (higher equates to True)
-    if higher == True:
         #if condition is met, print the statement using print function and f-string
-        print (f"NET PROFIT ON EACH DAY IS HIGHER THAN THE PREVIOUS DAY")
+        print(f"DAY: {list_day[i]}, AMOUNT: SGD{convertUSDtoSGD(list_profit[i])}")
+        #set the variable as False
+        higher = False
+    #set condition (net profit of a day is greater than the net profit of the previous day) for else statement
+    else:
+        #use continue keyword to move to the next iteration
+        continue
+#create a if statement and set a condition (higher equates to True)
+if higher == True:
+    #if condition is met, print the statement using print function and f-string
+    print (f"NET PROFIT ON EACH DAY IS HIGHER THAN THE PREVIOUS DAY")
 
