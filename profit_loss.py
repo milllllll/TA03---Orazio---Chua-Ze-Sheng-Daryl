@@ -4,7 +4,7 @@ from pathlib import Path
 import csv
 #import convertUSDtoSGD from api file
 from api import convertUSDtoSGD
-#creating path for profit_loss
+#create path for profit_loss
 profit_loss = Path.cwd()/"csv_reports"/"profit-and-loss.csv"
 
 #create empty list for profit
@@ -13,22 +13,22 @@ list_profit = []
 list_day = []
 #set variable as True
 higher = True
-#when profit-and-loss.csv is open
+#open profit-and-loss.csv using with statement
 with profit_loss.open(mode="r",encoding="UTF-8", newline="") as info:
     #use csv.reader() to read information in csv file and assign to variable reader
     reader = csv.reader(info)
-    #remove headers from information read
+    #skip headers from information read
     next(reader)
-    #for line in reader
+    #create For loop 
     for line in reader:
-        #append integral values to list_profit
+        #append net profits to list_profit
         list_profit.append(int(line[4]))
-        #append integral values to list_day
+        #append days to list_day
         list_day.append((line[0]))
 
     #create a For loop that repeat based on the number of sublist in the list_profit list (excluding the first sublist)
     for i in range(1, len(list_profit)):
-        #create if and else statement. 
+        #create if and else statement
         #set condition (net profit of a day is less than the net profit of the previous day) for if statement
         if list_profit[i] < list_profit[i-1]:
             #if condition is met, print the statement using print function and f-string
