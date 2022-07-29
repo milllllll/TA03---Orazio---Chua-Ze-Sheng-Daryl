@@ -13,17 +13,17 @@ list_profit = []
 list_day = []
 #set variable as True
 higher = True
-#open profit-and-loss.csv using with statement
+#open profit-and-loss.csv in read mode using with statement
 with profit_loss.open(mode="r",encoding="UTF-8", newline="") as info:
-    #use csv.reader() to read information in csv file and assign to variable reader
+    #use csv.reader() to read information in csv file and assign to variable, reader
     reader = csv.reader(info)
-    #skip headers from information read
+    #skip headers in reader
     next(reader)
     #create For loop 
     for line in reader:
-        #append net profits to list_profit
+        #append net profits to empty list (list_profit) using append and indexing function
         list_profit.append(int(line[4]))
-        #append days to list_day
+        #append days to empty list (list_day) using append and indexing function
         list_day.append((line[0]))
 
 #create a For loop that repeat based on the number of sublist in the list_profit list (excluding the first sublist)
