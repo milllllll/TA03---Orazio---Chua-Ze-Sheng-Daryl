@@ -33,8 +33,7 @@ def profitloss_function(forex):
                 #use the float() function to convert the net profit value from a string to a float
                 list_profit.append(float(line[4]))
                 #append the day number into the empty list, list_day, using the append() function
-                #use the int() function to convert the day from a string to a integer
-                list_day.append(int(line[0]))
+                list_day.append(line[0])
             #use except to prevent 'ValueError' from crashing the program, since the headers are strings of words that cannot be converted into a float
             #if detected, it will return to the try statement and the continue keyword helps to repeat the code body again
             except ValueError:
