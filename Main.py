@@ -6,7 +6,7 @@ from profit_loss import profitloss_function
 from cash_on_hand import coh_function
 from overheads import overheads_function
 
-#create a file path using Path.cwd() to locate a new file, "Summary Report,txt" and assign it to a variable, summary_filepath
+#create a file path using Path.cwd() to locate a new file, "Summary Report.txt" and assign it to a variable, summary_filepath
 summary_filepath = Path.cwd()/"Summary Report.txt"
 #create the new file using .touch() function
 summary_filepath.touch()
