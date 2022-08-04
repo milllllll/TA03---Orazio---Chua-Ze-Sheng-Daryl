@@ -21,6 +21,8 @@ def profitloss_function(forex):
     list_overall = []
     #open the Profits and Loss csv file in read mode using a with statement, to read its contents
     with profit_loss.open(mode="r",encoding="UTF-8", newline="") as info:
+        #set the variable, 'higher' as True
+        higher = True
         #create a reader object
         reader = csv.reader(info)
         #create a for loop to retrieve the data from the reader object
@@ -37,28 +39,25 @@ def profitloss_function(forex):
             #if detected, it will return to the try statement and the continue keyword helps to repeat the code body again
             except ValueError:
                 continue
-
-    for line in reader:
-        #append net profits to empty list (list_profit) using append and indexing function
-        list_profit.append(int(line[4]))
-        #append days to empty list (list_day) using append and indexing function
-        list_day.append((line[0]))
-
-#create a For loop that repeat based on the number of sublist in the list_profit list (excluding the first sublist)
-for i in range(1, len(list_profit)):
-    #create if and else statement
-    #set condition (net profit of a day is less than the net profit of the previous day) for if statement
-    if list_profit[i] < list_profit[i-1]:
-        #if condition is met, print the statement using print function and f-string
-        print(f"DAY: {list_day[i]}, AMOUNT: SGD{convertUSDtoSGD(list_profit[i])}")
-        #set the variable as False
-        higher = False
-    #set condition (net profit of a day is greater than the net profit of the previous day) for else statement
-    else:
-        #use continue keyword to move to the next iteration
-        continue
-#create a if statement and set a condition (higher equates to True)
-if higher == True:
-    #if condition is met, print the statement using print function and f-string
-    print (f"NET PROFIT ON EACH DAY IS HIGHER THAN THE PREVIOUS DAY")
-
+        #create a for loop that repeats the code body based on the number of sublists in list_profit
+        #this is excluding the first sublist, since there is no previous day data to compare with
+        for i in range(1, len(list_profit)):
+            #create if and else statements 
+            #set condition (net profit of a day is less than the net profit of the previous day) for the if statement
+            if list_profit[i] < list_profit[i-1]:
+                #if condition is met, set variable, 'higher' as False
+                higher = False
+                #append the following f-string into the empty list, 'list_overall' 
+                #use the (value difference * forex) equation to convert USD to SGD, and round off the value to 2 decimal place using round() function
+                list_overall.append(f"[PROFIT DEFICIT] DAY: {list_day[i]},  AMOUNT: SGD{round((list_profit[i-1]-list_profit[i])*forex,2)}\n")
+            #set condition (net profit of a day is greater than the net profit of the previous day) for the else statement
+            #if the condition of the if statement is not met, the code body under the else keyword will be ran
+            else:
+                #use continue keyword to move to the next iteration
+                continue
+        #create another if statement and set the condition, higher == True
+        if higher == True:
+            #if the condition is met, append the following f-string to the empty list, list_overall, using append() function
+            list_overall.append((f"[NET PROFIT SURPLUS] NET PROFIT ON EACH DAY IS HIGHER THAN THE PREVIOUS DAY\n"))
+        #return the 'list_overall' using return keyword
+        return list_overall
