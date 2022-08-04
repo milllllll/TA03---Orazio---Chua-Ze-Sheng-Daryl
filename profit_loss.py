@@ -13,11 +13,11 @@ def profitloss_function(forex):
     """
     #create a file path using Path.cwd() to locate the csv file and assign it to a variable, profit_loss
     profit_loss = Path.cwd()/"csv_reports"/"Profits and Loss.csv"
-    #create and empty list and assign to a variable called list_profit
+    #create an empty list and assign to a variable called list_profit
     list_profit = []
-    #create and empty list and assign it to a variable called list_day
+    #create an empty list and assign it to a variable called list_day
     list_day = []
-    #create and empty list and assign it to a variable called list_overall
+    #create an empty list and assign it to a variable called list_overall
     list_overall = []
     #open the Profits and Loss csv file in read mode using a with statement, to read its contents
     with profit_loss.open(mode="r",encoding="UTF-8", newline="") as info:
