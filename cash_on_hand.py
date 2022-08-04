@@ -3,7 +3,7 @@ from pathlib import Path
 #import the built-in module, csv
 import csv
 
-#create a function. coh_function(), with the parameter, forex
+#create a function, coh_function(), with the parameter, forex
 def coh_function(forex):
     #provide a description of the function, coh_function(forex) using docstring
     """
@@ -13,7 +13,7 @@ def coh_function(forex):
     """
     #create a file path using Path.cwd() to locate the csv file and assign it to a variable, coh
     coh = Path.cwd()/"csv_reports"/"Cash on Hand.csv"
-    #create and empty list and assign to a varibale called list_coh
+    #create and empty list and assign to a variable called list_coh
     list_coh = []
     #create and empty list and assign it to a variable called list_day
     list_day = []
