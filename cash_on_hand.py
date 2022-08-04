@@ -1,10 +1,44 @@
-#import Path module from pathlib
+#import Path from the built-in module, pathlib
 from pathlib import Path
-#import csv module
+#import the built-in module, csv
 import csv
-#import the exchange rate which is convertUSDtoSGD
-from api import convertUSDtoSGD
-#create a file path using Path.cwd() and assign it to a variable called coh_path
+
+#create a function. coh_function(), with the parameter, forex
+def coh_function(forex):
+    #provide a description of the function, coh_function(forex) using docstring
+    """
+    The program computes the difference in the cash on hand between each day and returns
+    the days where cash on hand is lower than the previous day and the value difference.
+    One parameter is required: forex, which will be the value of SGD for each dollar of USD.
+    """
+    #create a file path using Path.cwd() to locate the csv file and assign it to a variable, coh
+    coh = Path.cwd()/"csv_reports"/"Cash on Hand.csv"
+    #create and empty list and assign to a varibale called list_coh
+    list_coh = []
+    #create and empty list and assign it to a variable called list_day
+    list_day = []
+    #create and empty list and assign it to a variable called list_overall
+    list_overall = []
+    #open the Cash on Hand csv file in read mode using a with statement, to read its contents
+    with coh.open(mode="r",encoding="UTF-8", newline="") as info:
+        #create a reader object
+        reader = csv.reader(info)
+        #create a for loop to retrieve the data from the reader object
+        for line in reader:
+            #use try to start the exception handling
+            try:
+                #append the cash on hand value for each day into the empty list, list_coh, using the append() function
+                #use the float() function to convert the cash on hand value from a string to a float
+                list_coh.append(float(line[1]))
+                #append the day number into the empty list, list_day, using the append() function
+                list_day.append(line[0])
+            #use except to prevent 'ValueError' from crashing the program, since the headers are strings of words that cannot be converted into a float
+            #if detected, it will return to the try statement and the continue keyword helps to repeat the code body again
+            except ValueError:
+                continue
+
+
+#create a file path using Path.cwd() and assign it to a variable, coh_path
 coh_path = Path.cwd()/"csv_reports"/"cash-on-hand.csv"
 
 #create and empty list and assign to a varibale called list_coh
