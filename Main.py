@@ -1,32 +1,28 @@
-#import built in function, Path 
+#import Path from the built-in module, pathlib
 from pathlib import Path
-#import functions from api, profit_loss, coh and overhead files
+#import the various functions from the api, profit_loss, coh and overhead files
 from api import convertUSDtoSGD
 from profit_loss import profitloss_function
 from cash_on_hand import coh_function
 from overheads import overheads_function
 
-#set csv summary report to variable, 'summary_filepath' 
+#create a file path using Path.cwd() to locate a new file, "Summary Report,txt" and assign it to a variable, summary_filepath
 summary_filepath = Path.cwd()/"Summary Report.txt"
-#create file path using touch() function
+#create the new file using .touch() function
 summary_filepath.touch()
-#create variable, 'forex' to execute the convertUSDtoSGD() function
+#execute the convertUSDtoSGD() function and assign the return value to a variable, forex
 forex = convertUSDtoSGD()
-#open csv file in write mode using with statement
+#open the Summary report txt file in write mode using a with statement, to write content in it
 with summary_filepath.open(mode="w", encoding="UTF-8") as info:
-    #write the following f-string (real time currency conversion rate) into the summary csv using writelines() function
-    #and convert it from string to list using empty list, []
+    #store the following f-string into a list then write it into the Summary Report txt file using writelines() function
     info.writelines([f"[REAL TIME CURRENCY CONVERSION RATE] USD1 = SGD{forex}\n"])
-    #write the highest overheads from overheads file into the summary csv using writelines() function
-    #and convert it from string to list using empty list, []
+    #store the return value (highest overhead) of the overheads_function into a list then write it into the Summary Report txt file using writelines() function
     info.writelines([overheads_function(forex)])
-    #create a For loop that repeat based on the function, 'coh_function()'
+    #create a for loop to retrieve data from the return value of 'coh_function()'
     for i in coh_function(forex):
-        #write cash deficit or surplus (according to the function) into the summary csv using writelines() function
-        #and convert it from string to list using empty list, []
+        #store the return value (cash deficit or surplus) of the coh_function into a list then write it into the Summary Report txt file using writelines() function
         info.writelines([i])
-    #create For loop that repeat based on the function, 'profitloss_function()'
+    #create a for loop to retrieve data from the return value of 'profitloss_function()'
     for i in profitloss_function(forex):
-        #write profit deficit or net profit surplus (according to the function) into the summary csv using writelines() function
-        #and convert it from string to list using empty list, []
+        #store the return value (profit deficit or net profit surplus) of the profitloss_function into a list then write it into the Summary Report txt file using writelines() function
         info.writelines([i])
