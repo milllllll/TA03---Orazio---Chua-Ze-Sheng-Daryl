@@ -2,7 +2,7 @@
 import requests
 #create a function, convertUSDtoSGD(), with no parameter
 def convertUSDtoSGD():
-    # give a description of the function using docstring
+    #give a description of the function using docstring
     """
     The program extracts information on the currency exchange rate from USD to SGD from alphavantage.co 
     and returns the value of SGD for each dollar of USD.
