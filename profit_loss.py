@@ -1,4 +1,4 @@
-#imort Path from the built-in module, pathlib
+#import Path from the built-in module, pathlib
 from pathlib import Path
 #import the built-in module, csv
 import csv
