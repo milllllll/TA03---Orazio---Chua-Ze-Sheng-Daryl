@@ -1,6 +1,6 @@
 # create a function, 'convertUSDtoSGD' 
 def convertUSDtoSGD():
-    # give a description of the function using docstrings
+    # give a description of the function using docstring
     """
     The program extracts from alphavantage.co and returns 
     the real time currency conversion rate. 
